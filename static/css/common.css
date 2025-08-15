@@ -1,0 +1,36 @@
+body
+{
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden auto;
+    font-family: Impact, monospace;
+    letter-spacing: 0.05rem;
+}
+
+*
+{
+    user-select: none;
+}
+h1, h2, h3, h4, h5, h6, input
+{
+    user-select: text;
+}
+
+::-webkit-scrollbar
+{
+    width: 0.75vw;
+    height: 0.75vh;
+}
+::-webkit-scrollbar-track
+{
+    border-radius: calc(max(0.75vw, 0.75vh) / 2);
+    backdrop-filter: blur(8px);
+    background-color: rgba(170, 170, 170, 0.5);
+}
+::-webkit-scrollbar-thumb
+{
+    background-color: #eeeeee;
+    border-radius: calc(max(0.75vw, 0.75vh) / 2);
+}

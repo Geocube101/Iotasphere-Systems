@@ -1,0 +1,143 @@
+@media only screen and (orientation:portrait)
+{
+    nav#navbar
+    {
+        height: 15vh;
+    }
+    nav#navbar button
+    {
+        width: 20vw;
+        height: 5vh;
+        overflow: auto hidden;
+        font-size: 1rem;
+        margin: 0.25vh 1vw;
+    }
+    nav#navbar div:not(#current-user-container)
+    {
+        overflow: hidden auto;
+        height: 90%;
+    }
+    nav#navbar div#current-user-container
+    {
+        height: 10vh;
+    }
+
+    section div.section-header button
+    {
+        width: 25vw;
+    }
+    section.main-section h1
+    {
+        font-size: 2rem;
+    }
+
+    section div.subsection-header button
+    {
+        width: 25vw;
+    }
+
+    section#games-container div#games-list div.game-listing, section#users-container div#users-list div.user-listing, section#contacts-container div#contacts-list div.contact-listing
+    {
+        height: 8.375vh;
+    }
+    section#games-container div#games-list div.game-listing img, section#users-container div#users-list div.user-listing img, section#contacts-container div#contacts-list div.contact-listing img
+    {
+        width: 7.5vh;
+        height: 7.5vh;
+    }
+    section#games-container div#games-list div.game-listing p, section#users-container div#users-list div.user-listing p, section#contacts-container div#contacts-list div.contact-listing p
+    {
+        max-height: 7.5vh;
+        height: fit-content;
+        font-size: 1.5rem;
+        padding: 0 5vw;
+        margin: auto 0;
+    }
+    section#games-container div#games-list div.game-listing button, section#users-container div#users-list div.user-listing button, section#contacts-container div#contacts-list div.contact-listing button
+    {
+        min-width: 15vw;
+        width: fit-content;
+        height: 4vh;
+        font-size: 1.25rem;
+    }
+
+    section.main-section dialog.editor-dialog
+    {
+        width: 82.5vw;
+    }
+    section.main-section dialog.editor-dialog h1
+    {
+        font-size: 2rem;
+    }
+    section.main-section dialog.editor-dialog form div div.editor-basics-container
+    {
+        width: 85%;
+    }
+    section.main-section dialog.editor-dialog form div div label
+    {
+        font-size: 1.5rem;
+    }
+    section.main-section dialog.editor-dialog form div h2
+    {
+        margin: 1vh 0;
+        font-size: 2rem;
+    }
+    section.main-section dialog.editor-dialog form div div label input[type=text], section.main-section dialog.editor-dialog form div div label input[type=number], section.main-section dialog.editor-dialog form div div label input[type=email], section.main-section dialog.editor-dialog form div div label input[type=date], section.main-section dialog.editor-dialog form div div label input[type=password]
+    {
+        font-size: 1rem;
+        height: 1.5rem;
+    }
+    section.main-section dialog.editor-dialog form div div label select
+    {
+        font-size: 1rem;
+        height: 1.5rem;
+        min-width: 25vw;
+        width: fit-content;
+    }
+    section.main-section dialog.editor-dialog form div div label input[type=checkbox]
+    {
+        height: 1rem;
+    }
+    section.main-section dialog.editor-dialog form div div label input[type=file]
+    {
+        font-family: inherit;
+        font-size: 1rem;
+        width: fit-content;
+    }
+    section.main-section dialog.editor-dialog form div div label input[type=file]::file-selector-button
+    {
+        height: 1.25rem;
+        font-size: 0.75rem;
+    }
+    section.main-section dialog.editor-dialog form div.nested-objects-container div button
+    {
+        height: 5vh;
+        width: 20vw;
+        font-size: 1.5rem;
+    }
+    section.main-section dialog.editor-dialog form div.game-editor-button-container button, section.main-section dialog.editor-dialog form div.program-editor-button-container button
+    {
+        font-size: 1rem;
+    }
+
+    section.main-section dialog.editor-dialog form div.nested-objects-container div
+    {
+        height: 7.5vh;
+    }
+    section.main-section dialog.editor-dialog form div.nested-objects-container div img
+    {
+        height: 6.25vh;
+    }
+    section.main-section dialog.editor-dialog form div.nested-objects-container div p
+    {
+        font-size: 1.5rem;
+        margin: 0 5vw;
+    }
+    section.main-section dialog.editor-dialog form div.nested-objects-container div button
+    {
+        height: 4vh;
+        width: 20vw;
+        margin: 0 0.625vw;
+        font-size: 1.25rem;
+    }
+}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
+    <link href="../static/css/common.css?id=1000" rel="stylesheet" type="text/css" />
+    <link href="../static/css/index.css?id=1001" rel="stylesheet" type="text/css" />
+    <link href="../static/css/index_mobile.css?id=1002" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="../static/images/icon.jpg">
+    <title>IotaSphere Systems | Home</title>
+</head>
+<body>
+    <div id="background-gradient">
+        <img src="../static/images/background-2.webp" alt="Background" />
+    </div>
+    <nav id="navbar">
+        <div>
+            <div id="section-links">
+                <a href="#background-image-0">Home</a>
+                <a href="#subsites">Programs</a>
+            </div>
+            <button id="action-admin-login">Admin Login</button>
+            <div id="user-icon-container">
+                <img id="user-icon">
+            </div>
+        </div>
+    </nav>
+    <div id="background-image-0">
+        <div id="title-box">
+            <span>IotaSphere Systems</span>
+        </div>
+        <div id="contact-info-container">
+            <div>
+
+            </div>
+        </div>
+        <div class="background-image-box">
+            <img src="../static/images/background-0.webp"  alt="IMJG Background Card"/>
+        </div>
+    </div>
+    <div id="subsites" class="section-container">
+        <div class="section-header">
+            <h1>Programs</h1>
+        </div>
+        <div id="program-container">
+
+        </div>
+    </div>
+    <div id="gameextras">
+    </div>
+    <dialog id="admin-login-container">
+        <form id="admin-login" method="post" name="admin-login" enctype="application/x-www-form-urlencoded" action="/admin-login">
+            <h1>Admin Login</h1>
+            <label>
+                <input type="text" name="username" placeholder="Email or Username" autocomplete="on" autofocus required />
+            </label>
+            <label>
+                <input type="password" name="password" placeholder="Password" autocomplete="off" required />
+            </label>
+            <label id="remember-ip-container" title="If checked, automatically logs in for the next day, otherwise only 1 hour">
+                <input type="checkbox" name="remember-ip" value="true" />
+                Remember IP
+            </label>
+            <div>
+                <button type="button" id="action-admin-login-close">Close</button>
+                <button>Login</button>
+            </div>
+        </form>
+    </dialog>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/color/jquery.color-3.0.0.min.js" integrity="sha256-KfnxwOV3FhXN7A/28TCtqslo5fRS23cxO5XcxVO5we8=" crossorigin="anonymous"></script>
+    <script src="../static/js/common.js"></script>
+    <script src="../static/js/index.js"></script>
+</body>
+</html>

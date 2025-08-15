@@ -1,0 +1,116 @@
+@media only screen and (orientation:portrait)
+{
+    nav#navbar button, nav#navbar a
+    {
+        font-size: 1rem;
+        width: 25vw;
+    }
+    nav#navbar #section-links
+    {
+        width: 100%;
+    }
+    nav#navbar div div#user-icon-container
+    {
+        max-width: 12.5%;
+        height: 50%;
+    }
+
+    div#background-image-0 div#title-box span
+    {
+        font-size: 2rem;
+    }
+    div#background-image-0 div#title-box
+    {
+        top: 20vh;
+    }
+    div#background-image-0 div#image-box-0 img
+    {
+        left: -75vw;
+    }
+
+    div#background-image-0 div#contact-info-container
+    {
+        height: 15vh;
+        bottom: 25vh;
+    }
+    div#background-image-0 div#contact-info-container div a.contact h6
+    {
+        font-size: 1.5rem;
+    }
+
+    div.section-container
+    {
+        margin: 25vh 0;
+    }
+    div.section-container div.section-header h1
+    {
+        font-size: 2rem;
+    }
+    div.section-container div.subsection-container div.subsection
+    {
+        height: 75%;
+        width: 92.5%;
+        min-width: 92.5%;
+        max-width: unset;
+    }
+    div.section-container div.subsection-container div.subsection div.subsection-child
+    {
+        grid-template-columns: 10vh 50vw 10vw;
+    }
+
+    div.section-container div#program-container
+    {
+        width: 90vw;
+        grid-template-columns: repeat(auto-fill, 17vw);
+        grid-template-rows: repeat(auto-fill, 17vw);
+    }
+    div.section-container div#program-container div.program h6
+    {
+        font-size: 1.5rem;
+    }
+
+    div.section-container div.subsection-container div.subsection div.subsection-child img.game-icon-image
+    {
+        width: 75%;
+    }
+    div.section-container div.subsection-container div.subsection div.subsection-child img.game-domain-icon-image
+    {
+        height: 33.333333%;
+    }
+    div.section-container div.subsection-container div.subsection div.subsection-child a.game-name
+    {
+        font-size: 1.25rem;
+    }
+
+    dialog#admin-login-container
+    {
+        width: 75vw;
+    }
+    dialog#admin-login-container form#admin-login h1
+    {
+        font-size: 2.5rem;
+        margin: 1vh 0 2.5vh 0;
+    }
+    dialog#admin-login-container form#admin-login label
+    {
+        font-size: 1.75rem;
+    }
+    dialog#admin-login-container form#admin-login label#remember-ip-container
+    {
+        margin: 2vh 0;
+    }
+    dialog#admin-login-container form#admin-login input[type=text], dialog#admin-login-container form#admin-login input[type=password]
+    {
+        font-size: 1.75rem;
+        margin: 2vh 0;
+    }
+    dialog#admin-login-container form#admin-login input[type=checkbox]
+    {
+        margin: 0;
+    }
+    dialog#admin-login-container form#admin-login div button
+    {
+        font-size: 1.5rem;
+        width: 25vw;
+    }
+}

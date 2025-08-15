@@ -1,0 +1,525 @@
+div#background-gradient
+{
+    min-width: 100vw;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    z-index: -1;
+    display: inline;
+    overflow: hidden;
+}
+div#background-gradient img
+{
+    min-width: inherit;
+    min-height: inherit;
+    padding: inherit;
+}
+
+nav#navbar
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 10vh;
+    background: #000000;
+    border-bottom: 0.25rem solid #eeeeee;
+    z-index: 10;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+nav#navbar div
+{
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    overflow: auto hidden;
+    height: 85%;
+}
+nav#navbar div div:not(#user-icon-container)
+{
+    display: flex;
+    flex-direction: row;
+    border-bottom: 0.125rem solid #888888;
+    border-right: 0.125rem solid #888888;
+    border-radius: 1vh;
+    padding: 1vh 0;
+    max-width: 80%;
+    width: fit-content;
+    align-items: center;
+    justify-content: center;
+}
+nav#navbar button, nav#navbar a
+{
+    height: 5vh;
+    width: 10vw;
+    flex-shrink: 0;
+    flex-grow: 0;
+    background: linear-gradient(180deg, #000000 0%, #222222 80%);
+    border: 0.125rem solid #eeeeee;
+    color: #eeeeee;
+    font-family: inherit;
+    font-size: 1.5rem;
+    text-decoration: solid underline #eeeeee;
+    cursor: pointer;
+    margin: 0 2.5vw;
+    overflow: auto hidden;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+nav#navbar div div#section-links
+{
+    flex-grow: 1;
+    width: fit-content;
+    max-width: 75%;
+    justify-content: start;
+    display: flex;
+    flex-direction: row;
+    height: 62.5%;
+}
+nav#navbar div div#user-icon-container
+{
+    text-align: right;
+    justify-content: end;
+    flex-grow: 1;
+    flex-shrink: 1;
+    max-width: 25%;
+    height: 75%;
+}
+nav#navbar div div#user-icon-container img#user-icon
+{
+    height: 95%;
+    aspect-ratio: 1/1;
+    object-fit: contain;
+    border: 0.125rem solid #eeeeee;
+}
+
+div#background-image-0
+{
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    border-bottom: 0.25rem solid #eeeeee;
+    overflow: hidden;
+    position: relative;
+}
+div#background-image-0 div#title-box
+{
+    position: absolute;
+    top: 10vh;
+    width: inherit;
+    z-index: 1;
+    text-align: center;
+    background-color: rgba(34, 34, 34, 0.75);
+    border-bottom: 0.25rem solid #eeeeee;
+    border-top: 0.25rem solid #eeeeee;
+    padding: 4vh 0;
+}
+div#background-image-0 div#title-box span
+{
+    font-size: 6rem;
+    color: #eeeeee;
+    text-align: center;
+    border-bottom: 0.5rem solid #eeeeee;
+    padding: 0 2.5vw;
+    position: relative;
+    bottom: 1vh;
+    z-index: 1;
+}
+div#background-image-0 div.background-image-box
+{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: -0.25rem;
+    left: 0;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    z-index: 0;
+    clip-path: content-box;
+}
+div#background-image-0 div.background-image-box img
+{
+    min-width: 100vw;
+    max-height: 100vh;
+    margin: 0;
+    padding: inherit;
+    z-index: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+div#background-image-0 div#contact-info-container
+{
+    width: 100vw;
+    height: 25vh;
+    margin: 0 auto;
+    position: absolute;
+    bottom: 15vh;
+    text-align: center;
+    z-index: 10;
+    mask-image: linear-gradient(90deg, transparent 0, white 2.5%, white 97.5%, transparent 100%);
+}
+div#background-image-0 div#contact-info-container div
+{
+    max-width: 90%;
+    width: fit-content;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    overflow: auto hidden;
+    align-items: center;
+    justify-content: start;
+    text-align: center;
+}
+div#background-image-0 div#contact-info-container div a.contact
+{
+    height: 95%;
+    aspect-ratio: 1/1;
+    background: #000000;
+    border: 0.125rem solid #eeeeee;
+    position: relative;
+    overflow: hidden;
+    flex-grow: 0;
+    flex-shrink: 0;
+    margin: 0 5vw;
+}
+div#background-image-0 div#contact-info-container div a.contact img
+{
+    object-fit: contain;
+    width: 100%;
+    aspect-ratio: 1/1;
+}
+div#background-image-0 div#contact-info-container div a.contact h6
+{
+    position: absolute;
+    bottom: 1.5vh;
+    margin: 0;
+    font-family: inherit;
+    font-size: 2.5rem;
+    color: #eeeeee;
+    width: 100%;
+    overflow: auto hidden;
+    backdrop-filter: blur(4px);
+    border-bottom: 0.125rem solid #eeeeee;
+    border-top: 0.125rem solid #eeeeee;
+    background: rgba(34, 34, 34, 0.75);
+}
+
+div.section-container
+{
+    width: 100vw;
+    height: 100vh;
+    margin: 25vh 0;
+    padding: 0;
+    border-bottom: 0.25rem solid #eeeeee;
+    border-top: 0.25rem solid #eeeeee;
+    background: linear-gradient(180deg, #000000 0%, #222222 80%);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+div.section-container *
+{
+    z-index: 1;
+}
+div.section-container div.section-header
+{
+    position: relative;
+    width: 100vw;
+    text-align: center;
+    margin: 5vh auto 0 auto;
+    background-color: rgba(34, 34, 34, 0.75);
+    border-top: 0.25rem solid #eeeeee;
+    border-bottom: 0.25rem solid #eeeeee;
+    backdrop-filter: blur(4px);
+}
+div.section-container div.section-header div
+{
+    overflow: auto hidden;
+    margin: 0 auto;
+    max-width: 90%;
+    width: fit-content;
+    display: flex;
+    flex-shrink: 0;
+    flex-grow: 0;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    padding: 0 5vw;
+}
+div.section-container div.section-header img
+{
+    height: 4rem;
+    aspect-ratio: 1/1;
+    border: 0.125rem solid #eeeeee;
+    cursor: pointer;
+    margin-right: 2.5vw;
+}
+div.section-container div.section-header h1
+{
+    font-size: 4rem;
+    color: #eeeeee;
+    text-decoration: underline;
+    text-overflow: ellipsis;
+    margin: 1.5vh 0;
+    cursor: pointer;
+    line-height: 1.25;
+    text-wrap: nowrap;
+    white-space: nowrap;
+}
+div.section-container div.background-image-box
+{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    z-index: 0;
+    clip-path: content-box;
+}
+div.section-container div.background-image-box img
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+}
+
+div.section-container div#program-container
+{
+    width: 95vw;
+    height: 85vh;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 5vw);
+    grid-template-rows: repeat(auto-fill, 5vw);
+    gap: 1vw;
+    margin: 0 auto;
+    padding: 1vh 1vw;
+}
+div.section-container div#program-container div.program
+{
+    border: 0.125rem solid #eeeeee;
+    background-color: #000000;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+div.section-container div#program-container div.program img
+{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+div.section-container div#program-container div.program h6
+{
+    position: absolute;
+    bottom: 1.5vh;
+    margin: 0;
+    font-family: inherit;
+    font-size: 2rem;
+    color: #eeeeee;
+    width: 100%;
+    overflow: auto hidden;
+    backdrop-filter: blur(4px);
+    border-bottom: 0.125rem solid #eeeeee;
+    border-top: 0.125rem solid #eeeeee;
+    background: rgba(34, 34, 34, 0.75);
+    mask-image: linear-gradient(90deg, transparent 0%, #ffffff 10%, #ffffff 90%, transparent 100%);
+}
+
+div.section-container div.subsection-container
+{
+    max-width: 90%;
+    min-width: 75%;
+    width: fit-content;
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
+    top: 5vh;
+    height: 75%;
+    overflow: auto hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    mask-image: linear-gradient(to right, transparent 0, white 2.5%, white 97.5%, transparent 100%);
+}
+div.section-container div.subsection-container div.subsection
+{
+    background: #000000;
+    border: 0.25rem solid #eeeeee;
+    width: 45%;
+    height: 90%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    margin: 0 2.5vw;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    overflow: hidden auto;
+    padding: 0;
+}
+div.section-container div.subsection-container div.subsection h2
+{
+    min-width: 25%;
+    width: fit-content;
+    font-size: 2rem;
+    color: #eeeeee;
+    text-align: center;
+    border-bottom: 0.5rem solid #eeeeee;
+    margin: 2.5vh auto 0 auto;
+    display: inline-block;
+}
+div.section-container div.subsection-container div.subsection div.subsection-child
+{
+    height: 10vh;
+    width: 95%;
+    overflow: auto hidden;
+    display: grid;
+    grid-template-rows: 10vh;
+    grid-template-columns: 10vh auto 5vw;
+    align-items: center;
+    margin: 1.25vh 0 1.25vh 1.25vw;
+    padding: 0;
+}
+div.section-container div.subsection-container div.subsection div.subsection-child img.game-icon-image
+{
+    border: 0.125rem solid #eeeeee;
+    width: 90%;
+    grid-row: 1/1;
+    grid-column: 1/1;
+    margin: 0;
+    padding: 0;
+}
+div.section-container div.subsection-container div.subsection div.subsection-child img.game-domain-icon-image
+{
+    height: 50%;
+    aspect-ratio: 1/1;
+    grid-row: 1/1;
+    grid-column: 3/3;
+    margin: 0;
+    padding: 0;
+}
+div.section-container div.subsection-container div.subsection div.subsection-child a.game-name
+{
+    font-size: 1.75rem;
+    color: #eeeeee;
+    text-align: left;
+    display: inline-block;
+    grid-row: 1/1;
+    grid-column: 2/2;
+    word-wrap: normal;
+    word-break: normal;
+    white-space: break-spaces;
+    text-overflow: ellipsis;
+    text-decoration: none;
+    margin: 0 0 0 1.25vw;
+}
+
+dialog#admin-login-container
+{
+    position: fixed;
+    width: 25vw;
+    height: fit-content;
+    margin: auto;
+    z-index: 20;
+    background: #000000;
+    border: 0.25rem solid #eeeeee;
+    overflow: hidden auto;
+}
+dialog#admin-login-container::backdrop
+{
+    backdrop-filter: blur(8px);
+}
+dialog#admin-login-container form#admin-login
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+dialog#admin-login-container form#admin-login h1
+{
+    font-size: 4rem;
+    color: #eeeeee;
+    text-decoration: underline;
+    padding: 0;
+    margin: 1vh 0 5vh 0;
+}
+dialog#admin-login-container form#admin-login label
+{
+    flex-grow: 0;
+    flex-shrink: 0;
+    text-align: center;
+    width: fit-content;
+    height: fit-content;
+    color: #eeeeee;
+    font-size: 1.5rem;
+    font-family: inherit;
+}
+dialog#admin-login-container form#admin-login label#remember-ip-container
+{
+    border-bottom: 0.125rem solid #eeeeee;
+    padding: 0.25vh 1.25vw;
+    margin: 2.5vh 0;
+}
+dialog#admin-login-container form#admin-login input[type=text], dialog#admin-login-container form#admin-login input[type=password]
+{
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 0.125rem solid #eeeeee;
+    font-size: 2rem;
+    color: #eeeeee;
+    overflow: auto hidden;
+    margin: 2.5vh 0;
+    font-family: inherit;
+}
+dialog#admin-login-container form#admin-login input[type=checkbox]
+{
+    flex-grow: 0;
+    flex-shrink: 0;
+    background: transparent;
+    margin: 0 1vw;
+    height: 3vh;
+    aspect-ratio: 1/1;
+}
+dialog#admin-login-container form#admin-login div
+{
+    display: flex;
+    flex-direction: row;
+}
+dialog#admin-login-container form#admin-login div button
+{
+    height: 5vh;
+    width: 10vw;
+    flex-shrink: 0;
+    flex-grow: 0;
+    background: linear-gradient(180deg, #000000 0%, #222222 80%);
+    border: 0.125rem solid #eeeeee;
+    color: #eeeeee;
+    font-family: inherit;
+    font-size: 1.5rem;
+    text-decoration: solid underline #eeeeee;
+    cursor: pointer;
+    margin: 2.5vh 1.25vw;
+}

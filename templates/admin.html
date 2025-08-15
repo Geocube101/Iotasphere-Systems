@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
+  <link href="../static/css/common.css?id=1000" rel="stylesheet" type="text/css" />
+  <link href="../static/css/admin.css?id=1001" rel="stylesheet" type="text/css" />
+  <link href="../static/css/admin_mobile.css?id=1002" rel="stylesheet" type="text/css" />
+  <link rel="shortcut icon" href="../static/images/icon.jpg">
+  <title>IotaSphere Systems | Admin</title>
+</head>
+<body>
+  <nav id="navbar">
+    <div>
+      <button>Home</button>
+      <button id="action-contacts" value="contacts-container">Contacts</button>
+      <button id="action-websites" value="programs-container">Programs</button>
+      <button id="action-games" value="games-container">Games</button>
+      <button id="action-users" value="users-container">Users</button>
+    </div>
+    <div id="current-user-container">
+      <img id="current-user-profile-img" alt="Profile" />
+      <div>
+        <h2 id="current-user-name">N/A</h2>
+        <h4 id="current-user-access">N/A</h4>
+      </div>
+    </div>
+  </nav>
+  <section id="contacts-container" class="main-section">
+    <div class="section-header">
+      <h1>Contacts:</h1>
+      <button id="add-contact-button">Add</button>
+    </div>
+    <div id="contacts-list">
+
+    </div>
+    <dialog id="contact-editor-container" class="editor-dialog">
+      <h1>Edit Contact Entry</h1>
+      <form id="contact-editor" method="post" name="game-editor" enctype="application/x-www-form-urlencoded" action="/admin/program-editor">
+        <div>
+          <h2>Basic Information:</h2>
+          <div id="contact-editor-basics-container" class="editor-basics-container">
+            <label>
+              Contact Name:
+              <input id="contact-editor-contact-name" name="contact-editor-contact-name" type="text" minlength="4" maxlength="64" required />
+            </label>
+            <label>
+              Contact URL:
+              <input id="contact-editor-contact-content" name="contact-editor-contact-content" type="text" />
+            </label>
+            <label>
+              Contact Full URL:
+              <input id="contact-editor-contact-url" type="text" disabled />
+            </label>
+            <label>
+              Visible:
+              <input id="contact-editor-contact-visible" name="contact-editor-contact-visible" type="checkbox" value="true">
+            </label>
+            <label>
+              Contact Type:
+              <select id="contact-editor-contact-type" name="contact-editor-contact-type" required>
+                <option value="0">N/A</option>
+                <option value="1">URL</option>
+                <option value="2">Email</option>
+                <option value="3">Phone</option>
+              </select>
+            </label>
+            <label>
+              <img id="contact-editor-contact-icon-img" title="Contact Icon Image" src=""  alt=""/>
+              Icon Image:
+              <input id="contact-editor-contact-icon-image" name="contact-editor-contact-icon-image" type="file" accept="image/*">
+            </label>
+            <input type="hidden" id="contact-editor-contact-id" name="contact-editor-contact-id" />
+            <input type="hidden" id="contact-editor-contact-icon-image-data" name="contact-editor-contact-icon-image-data" />
+            <input type="hidden" id="contact-editor-contact-icon-image-ext" name="contact-editor-contact-icon-image-ext" />
+          </div>
+        </div>
+        <div class="program-editor-button-container">
+          <button>Save Changes</button>
+          <button type="button" id="contact-editor-close">Discard Changes</button>
+          <button type="button" id="contact-editor-delete" class="delete-button">Delete Contact</button>
+        </div>
+      </form>
+    </dialog>
+  </section>
+  <section id="programs-container" class="main-section">
+    <div class="section-header">
+      <h1>Programs:</h1>
+      <button id="add-program-button">Add</button>
+    </div>
+    <div id="table-container">
+      <table>
+        <tbody>
+
+        </tbody>
+      </table>
+    </div>
+    <dialog id="program-editor-container" class="editor-dialog">
+      <h1>Edit Program Entry</h1>
+      <form id="program-editor" method="post" name="game-editor" enctype="application/x-www-form-urlencoded" action="/admin/program-editor">
+        <div>
+          <h2>Basic Information:</h2>
+          <div id="program-editor-basics-container" class="editor-basics-container">
+            <label>
+              Program Name:
+              <input id="program-editor-program-name" name="program-editor-program-name" type="text" minlength="4" maxlength="64" required />
+            </label>
+            <label>
+              Program URL:
+              <input id="program-editor-program-url" name="program-editor-program-url" type="text" />
+            </label>
+            <label>
+              Visible:
+              <input id="program-editor-program-visible" name="program-editor-program-visible" type="checkbox" value="true">
+            </label>
+            <label>
+              <img id="program-editor-program-icon-img" title="Program Icon Image" src=""  alt=""/>
+              Icon Image:
+              <input id="program-editor-program-icon-image" name="program-editor-program-icon-image" type="file" accept="image/*">
+            </label>
+            <label>
+              Display Width:
+              <input id="program-editor-program-width" name="program-editor-program-width" type="number" min="1" max="5" required>
+            </label>
+            <label>
+              Display Height:
+              <input id="program-editor-program-height" name="program-editor-program-height" type="number" min="1" max="5" required>
+            </label>
+            <label>
+              Program Type:
+              <select id="program-editor-program-type" name="program-editor-program-type" required>
+                <option value="0">Program</option>
+                <option value="1">Website</option>
+                <option value="2">Game</option>
+              </select>
+            </label>
+            <input type="hidden" id="program-editor-program-id" name="program-editor-program-id" />
+            <input type="hidden" id="program-editor-program-icon-image-data" name="program-editor-program-icon-image-data" />
+            <input type="hidden" id="program-editor-program-icon-image-ext" name="program-editor-program-icon-image-ext" />
+          </div>
+        </div>
+        <div class="program-editor-button-container">
+          <button>Save Changes</button>
+          <button type="button" id="program-editor-close">Discard Changes</button>
+          <button type="button" id="program-editor-delete" class="delete-button">Delete Program</button>
+        </div>
+      </form>
+    </dialog>
+  </section>
+  <section id="games-container" class="main-section">
+    <div class="section-header">
+      <h1>Games:</h1>
+      <button id="add-game-button">Add</button>
+    </div>
+    <div id="games-list">
+
+    </div>
+    <dialog id="game-editor-container" class="editor-dialog">
+      <h1>Edit Game Entry</h1>
+      <form id="game-editor" method="post" name="game-editor" enctype="application/x-www-form-urlencoded" action="/admin/game-editor">
+        <div>
+          <h2>Basic Information:</h2>
+          <div id="game-editor-basics-container" class="editor-basics-container">
+            <label>
+              Game Name:
+              <input id="game-editor-game-name" name="game-editor-game-name" type="text" minlength="4" maxlength="64" required />
+            </label>
+            <label>
+              Game URL:
+              <input id="game-editor-game-url" name="game-editor-game-url" type="text" />
+            </label>
+            <label>
+              Visible:
+              <input id="game-editor-game-visible" name="game-editor-game-visible" type="checkbox" value="true">
+            </label>
+            <label>
+              <img id="game-editor-game-icon-img" title="Game Icon Image" src=""  alt=""/>
+              Icon Image:
+              <input id="game-editor-game-icon-image" name="game-editor-game-icon-image" type="file" accept="image/*">
+            </label>
+            <label>
+              <img id="game-editor-game-bg-img" title="Game Background Image" src="" alt="" />
+              Background Image:
+              <input id="game-editor-game-bg-image" name="game-editor-game-bg-image" type="file" accept="image/*">
+            </label>
+            <input type="hidden" id="game-editor-game-id" name="game-editor-game-id" />
+            <input type="hidden" id="game-editor-game-icon-image-data" name="game-editor-game-icon-image-data" />
+            <input type="hidden" id="game-editor-game-bg-image-data" name="game-editor-game-bg-image-data" />
+            <input type="hidden" id="game-editor-game-icon-image-ext" name="game-editor-game-icon-image-ext" />
+            <input type="hidden" id="game-editor-game-bg-image-ext" name="game-editor-game-bg-image-ext" />
+            <input type="hidden" id="game-editor-game-sections" name="game-editor-game-sections" />
+          </div>
+        </div>
+        <div>
+          <div class="subsection-header">
+            <h2>Sections:</h2>
+            <button id="add-section-button" type="button">Add</button>
+          </div>
+          <div id="game-editor-section-container" class="nested-objects-container"></div>
+        </div>
+        <div class="game-editor-button-container">
+          <button>Save Changes</button>
+          <button type="button" id="game-editor-close">Discard Changes</button>
+        </div>
+      </form>
+    </dialog>
+    <dialog id="game-section-editor-container" class="editor-dialog">
+      <h1>Edit Game Section Entry</h1>
+      <form id="game-section-editor">
+        <div>
+          <h2>Basic Information:</h2>
+          <div id="game-section-editor-basics-container" class="editor-basics-container">
+            <label>
+              Section Name:
+              <input id="game-section-editor-section-name" name="game-section-editor-section-name" type="text" minlength="4" maxlength="64" required />
+            </label>
+            <label>
+              Visible:
+              <input id="game-section-editor-section-visible" name="game-section-editor-section-visible" type="checkbox" value="true">
+            </label>
+            <label>
+              <img id="game-section-editor-section-background-img" title="Section Background Image" src=""  alt=""/>
+              Background Image:
+              <input id="game-section-editor-section-background-image" name="game-section-editor-section-background-image" type="file" accept="image/*">
+            </label>
+          </div>
+        </div>
+        <div>
+          <div class="subsection-header">
+            <h2>Objects:</h2>
+            <button id="add-child-button" type="button">Add</button>
+          </div>
+          <div id="game-section-editor-child-container" class="nested-objects-container"></div>
+        </div>
+        <div class="game-editor-button-container">
+          <button>Save Changes</button>
+          <button type="button" id="game-section-editor-close">Discard Changes</button>
+        </div>
+      </form>
+    </dialog>
+    <dialog id="game-child-editor-container" class="editor-dialog">
+      <h1>Edit Section Object Entry</h1>
+      <form id="game-child-editor">
+        <div>
+          <h2>Basic Information:</h2>
+          <div id="game-child-editor-basics-container" class="editor-basics-container">
+            <label>
+              Object Name:
+              <input id="game-child-editor-child-name" name="game-section-editor-child-name" type="text" minlength="4" maxlength="64" required />
+            </label>
+            <label>
+              Object URL:
+              <input id="game-child-editor-child-url" name="game-section-editor-child-url" type="text" />
+            </label>
+            <label>
+              Visible:
+              <input id="game-child-editor-child-visible" name="game-section-editor-child-visible" type="checkbox" value="true">
+            </label>
+            <label>
+              <img id="game-child-editor-child-icon-img" title="Section Icone Image" src=""  alt=""/>
+              Icon Image:
+              <input id="game-child-editor-child-icon-image" name="game-child-editor-child-icon-image" type="file" accept="image/*">
+            </label>
+          </div>
+        </div>
+        <div class="game-editor-button-container">
+          <button>Save Changes</button>
+          <button type="button" id="game-child-editor-close">Discard Changes</button>
+        </div>
+      </form>
+    </dialog>
+  </section>
+  <section id="users-container" class="main-section">
+    <div class="section-header">
+      <h1>Users:</h1>
+      <button id="add-user-button">Add</button>
+    </div>
+    <div id="users-list">
+
+    </div>
+    <dialog id="user-editor-container" class="editor-dialog">
+      <h1>Edit User</h1>
+      <form id="user-editor" method="post" name="game-editor" enctype="application/x-www-form-urlencoded" action="/admin/user-editor">
+        <div>
+          <h2>Basic Information:</h2>
+          <div id="user-editor-basics-container" class="editor-basics-container">
+            <label>
+              Username:
+              <input id="user-editor-user-name" name="user-editor-user-name" type="text" minlength="4" maxlength="64" required />
+            </label>
+            <label>
+              Email:
+              <input id="user-editor-user-email" name="user-editor-user-email" type="email" minlength="4" required />
+            </label>
+            <label>
+              Password:
+              <input id="user-editor-user-password" name="user-editor-user-password" type="password" minlength="6" title="Change User Password" disabled />
+            </label>
+            <label>
+              Expires:
+              <input id="user-editor-user-expires" name="user-editor-user-expires" type="checkbox" value="true">
+            </label>
+            <label>
+              Expire Date:
+              <input id="user-editor-user-expire" name="user-editor-user-expire" type="date" />
+            </label>
+            <label>
+              Account Enabled:
+              <input id="user-editor-user-enabled" name="user-editor-user-enabled" type="checkbox" value="true">
+            </label>
+            <label>
+              <img id="user-editor-user-icon-img" title="User Icon Image" src=""  alt=""/>
+              Icon Image:
+              <input id="user-editor-user-icon-image" name="user-editor-user-icon-image" type="file" accept="image/*">
+            </label>
+            <label>
+              User Type:
+              <select id="user-editor-user-type" name="user-editor-user-type" required>
+                <option value="0">Superuser</option>
+                <option value="1">Administrator</option>
+                <option value="2">Moderator</option>
+              </select>
+            </label>
+            <input type="hidden" id="user-editor-user-id" name="user-editor-user-id" />
+            <input type="hidden" id="user-editor-user-icon-image-data" name="user-editor-user-icon-image-data" />
+            <input type="hidden" id="user-editor-user-icon-image-ext" name="user-editor-user-icon-image-ext" />
+            <input type="hidden" id="user-editor-user-expire-ts" name="user-editor-user-expire-ts" />
+          </div>
+        </div>
+        <div class="program-editor-button-container">
+          <button>Save Changes</button>
+          <button type="button" id="user-editor-close">Discard Changes</button>
+          <button type="button" id="user-editor-delete" class="delete-button">Delete User</button>
+        </div>
+      </form>
+    </dialog>
+  </section>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.min.js" integrity="sha512-8ExARjWWkIllMlNzVg7JKq9RKWPlJABQUNq6YvAjE/HobctjH/NA+bSiDMDvouBVjp4Wwnf1VP1OEv7Zgjtuxw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="../static/js/common.js"></script>
+  <script src="../static/js/admin.js"></script>
+</body>
+</html>
