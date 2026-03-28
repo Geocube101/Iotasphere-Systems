@@ -20,6 +20,7 @@ import CustomMethodsVI.FileSystem as FileSystem
 import CustomMethodsVI.Stream as Stream
 
 import Admins
+import APIHandler
 import Storage
 import Util
 import SocketHandler
@@ -32,11 +33,16 @@ executable_dir: FileSystem.Directory = FileSystem.Directory('Executables')
 external_executable_file: FileSystem.File = executable_dir.file('executables.json')
 storage: Storage.MyGlobalServerStorage = Storage.MyGlobalServerStorage.load('Data/storage.json')
 socketio: SocketHandler.SocketioHandler = SocketHandler.SocketioHandler(flask_app, admin_cache, async_mode='gevent')
+fileshare_root: FileSystem.Directory = FileSystem.Directory('Data/fileshare')
+APIHandler.handler(flask_app)
 executables: dict[str, tuple[int, tuple[str, str], multiprocessing.Process, multiprocessing.connection.Connection, multiprocessing.connection.Connection]] = {}
 temp_program_listings: dict[str, str] = {}
+thread_close_event: threading.Event = threading.Event()
+storage_save_thread: threading.Thread = ...
 HOST: str = '0.0.0.0'
 SCHEMA: str = 'http://'
 PORT: int = 5000
+SAVE_DELAY: int = 600
 
 if not executable_dir.exists():
     executable_dir.create()
@@ -59,6 +65,36 @@ def apply_headers(response: flask.Response):
 @flask_app.route('/')
 def index():
     return flask.render_template('index.html')
+
+
+@flask_app.route('/filetree', methods=('GET', 'POST'))
+def filetree():
+    if flask.request.method == 'GET':
+        return flask.render_template('filetree.html')
+    else:
+        content: dict[str, list[str]] = {
+            'dirs': [child.dirname for child in fileshare_root.dirs],
+            'files': [child.basename for child in fileshare_root.files]
+        }
+        return flask.Response(status=200, response=json.dumps(content), headers={'Content-Type': 'application/json'})
+
+
+@flask_app.route('/filetree/<path:subpath>', methods=('POST',))
+def filepath(subpath: str):
+    if '.' in subpath:
+        return flask.redirect(f'/fileshare/{subpath}')
+    else:
+        subdir: FileSystem.Directory = fileshare_root.cd(subpath)
+        print(subpath, subdir)
+
+        if not subdir.exists() or not subdir.abspath.startswith(fileshare_root.abspath):
+            return flask.Response(status=404, response=f'No such directory - "{subdir}"')
+
+        content: dict[str, list[str]] = {
+            'dirs': [child.dirname for child in subdir.dirs],
+            'files': [child.basename for child in subdir.files]
+        }
+        return flask.Response(status=200, response=json.dumps(content), headers={'Content-Type': 'application/json'})
 
 
 @flask_app.route('/proxyhost/<path:subdomain>', methods=('GET', 'POST'))
@@ -86,11 +122,10 @@ def proxyhost(subdomain: str):
 
 @flask_app.route('/fileshare/<path:filepath>', methods=('GET', 'POST'))
 def fileshare(filepath: str):
-    basedir: FileSystem.Directory = FileSystem.Directory('Data/fileshare')
-    file: FileSystem.File = basedir.file(filepath)
-    abspath1: str = basedir.abspath()
-    abspath2: str = file.parentdir().abspath()
-    return flask.send_from_directory(file.parentdir().dirpath(), file.basename()) if abspath2.startswith(abspath1) and file.exists() else flask.Response(status=404, response='No such file')
+    file: FileSystem.File = fileshare_root.file(filepath)
+    abspath1: str = fileshare_root.abspath
+    abspath2: str = file.parent.abspath
+    return flask.send_from_directory(file.parent.dirpath, file.basename) if abspath2.startswith(abspath1) and file.exists() else flask.Response(status=404, response='No such file')
 
 
 @flask_app.route('/admin', methods=('GET',))
@@ -582,7 +617,7 @@ def icon_image(image_id: str):
 
     image_id: int = int(image_id, 10)
     file: FileSystem.File | None = storage.MyImageLoader.MyIconStorage.image_file(image_id)
-    response: flask.Response = flask.Response(status=404, response=f'No such image: {image_id}') if file is None else flask.send_from_directory(storage.MyImageLoader.MyIconStorage.dir.dirpath(), file.basename())
+    response: flask.Response = flask.Response(status=404, response=f'No such image: {image_id}') if file is None else flask.send_from_directory(storage.MyImageLoader.MyIconStorage.dir.dirpath, file.basename)
     response.headers['Cache-Control'] = 'no-store'
     return response
 
@@ -596,7 +631,7 @@ def background_image(image_id: str):
 
     image_id: int = int(image_id, 10)
     file: FileSystem.File | None = storage.MyImageLoader.MyBackgroundStorage.image_file(image_id)
-    response: flask.Response = flask.Response(status=404, response=f'No such image: {image_id}') if file is None else flask.send_from_directory(storage.MyImageLoader.MyBackgroundStorage.dir.dirpath(), file.basename())
+    response: flask.Response = flask.Response(status=404, response=f'No such image: {image_id}') if file is None else flask.send_from_directory(storage.MyImageLoader.MyBackgroundStorage.dir.dirpath, file.basename)
     response.headers['Cache-Control'] = 'no-store'
     return response
 
@@ -610,7 +645,7 @@ def generic_image(image_id: str):
 
     image_id: int = int(image_id, 10)
     file: FileSystem.File | None = storage.MyImageLoader.MyGenericStorage.image_file(image_id)
-    response: flask.Response = flask.Response(status=404, response=f'No such image: {image_id}') if file is None else flask.send_from_directory(storage.MyImageLoader.MyGenericStorage.dir.dirpath(), file.basename())
+    response: flask.Response = flask.Response(status=404, response=f'No such image: {image_id}') if file is None else flask.send_from_directory(storage.MyImageLoader.MyGenericStorage.dir.dirpath, file.basename)
     response.headers['Cache-Control'] = 'no-store'
     return response
 
@@ -641,6 +676,8 @@ def shutdown():
         for subdomain, program in temp_program_listings.items():
             storage.del_program(program)
 
+        thread_close_event.set()
+        storage_save_thread.join()
         executables.clear()
         storage.save('Data/storage.json')
         admin_cache.save('Data/admin.dat')
@@ -662,7 +699,6 @@ def fallback(urlpath):
         return flask.Response(status=404)
     else:
         subpath: str = flask.request.url.split('://')[1].split('/')[1]
-        print(subdomain, subpath)
         return flask.redirect(f'/proxyhost/{subdomain}/{subpath}', 307)
 
 
@@ -679,7 +715,9 @@ def load_executables(host: str, port: int):
             data = json.load(f)
 
             for route_name, executable in data.items():
-                if len(route_name) < 4:
+                if not executable['enabled']:
+                    continue
+                elif len(route_name) < 4:
                     print(f'\033[38;5;214m ... [!] Routing path to short: "{executable_path}" @ {route_name}\033[0m')
                     continue
 
@@ -741,8 +779,32 @@ def load_executables(host: str, port: int):
     print(f'\033[38;2;0;150;0m [+] Loaded {len(executables)} Executable(s)\033[0m')
 
 
+def storage_saver(close_event: threading.Event) -> None:
+    try:
+        tid: int = threading.current_thread().native_id
+        print(f'\033[38;2;0;150;0m [+] Started storage saver on thread {tid} - DELAY={SAVE_DELAY}\033[0m')
+
+        while not close_event.is_set():
+            for _ in range(SAVE_DELAY):
+                time.sleep(1)
+
+                if close_event.is_set():
+                    return
+
+            storage.save('Data/storage.json')
+            admin_cache.save('Data/admin.dat')
+            print('\033[38;2;128;128;128m [*] Saved storage and admin cache\033[0m')
+    except KeyboardInterrupt:
+        pass
+    finally:
+        print(f'\033[38;2;0;150;0m [+] Stopped storage saver thread on thread {tid}\033[0m')
+
+
 def main():
+    global storage_save_thread
     load_executables(HOST, PORT)
+    storage_save_thread = threading.Thread(target=storage_saver, args=(thread_close_event,))
+    storage_save_thread.start()
     socketio.listen(HOST, PORT, True)
     print('\033[38;2;0;255;0m [+] Server Started\033[0m')
 
@@ -771,7 +833,7 @@ def main():
                         process.terminate()
 
             for subdomain in closed:
-                print(f'\033[38;2;255;50;50m [X] Sub-server closed @ {subdomain}:{executables[subdomain][0]} with PID={executables[subdomain][2].pid}')
+                print(f'\033[38;2;255;50;50m [X] Sub-server closed @ {subdomain}:{executables[subdomain][0]} with PID={executables[subdomain][2].pid}\033[0m')
                 del executables[subdomain]
 
             closed.clear()

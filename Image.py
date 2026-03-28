@@ -27,7 +27,7 @@ class MyImageLoader:
 
         def del_image(self, image_id: int) -> None:
             assert isinstance(image_id, int)
-            self.__dirpath__.delfile(f'{image_id}.jpg')
+            self.__dirpath__.delete_file(f'{image_id}.jpg')
 
         def set_image(self, image_id: int | None, image: PIL.Image.Image) -> int:
             assert image_id is None or isinstance(image_id, int), 'Invalid image ID'
@@ -42,7 +42,7 @@ class MyImageLoader:
                 image_id = uid.int
 
             image = self.convert_image(image)
-            image.save(self.__dirpath__.file(f'{int(image_id)}.jpg').filepath(), 'JPEG')
+            image.save(self.__dirpath__.file(f'{int(image_id)}.jpg').filepath, 'JPEG')
             return image_id
 
         def get_image(self, image_id: int) -> PIL.Image.Image | None:
@@ -50,10 +50,10 @@ class MyImageLoader:
 
             file: FileSystem.File = self.__dirpath__.file(f'{int(image_id)}.jpg')
 
-            if not file.exists() or file.extension() != 'jpg':
+            if not file.exists() or file.extension != 'jpg':
                 return None
 
-            image: PIL.Image.Image = PIL.Image.open(file.filepath(), 'r')
+            image: PIL.Image.Image = PIL.Image.open(file.filepath, 'r')
             return image if self.__image_size__ is None or image.size == self.__image_size__ else None
 
         def convert_image(self, image: PIL.Image.Image) -> PIL.Image.Image:
@@ -76,7 +76,7 @@ class MyImageLoader:
         def image_file(self, image_id: int) -> FileSystem.File | None:
             assert isinstance(image_id, int), 'Invalid image ID'
             file: FileSystem.File = self.__dirpath__.file(f'{int(image_id)}.jpg')
-            return None if not file.exists() or file.extension() != 'jpg' else file
+            return None if not file.exists() or file.extension != 'jpg' else file
 
         @property
         def dir(self) -> FileSystem.Directory:
